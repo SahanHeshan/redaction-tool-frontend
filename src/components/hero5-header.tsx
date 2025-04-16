@@ -10,6 +10,7 @@ import { ThemeToggle } from "./theme-toggle";
 const menuItems = [
   { name: "Home", href: "/" },
   { name: "Features", href: "/features" },
+  { name: "Dashboard", href: "/dashboard" },
   { name: "Pricing", href: "/pricing" },
   { name: "About", href: "/about" },
 ];
@@ -63,7 +64,11 @@ export const HeroHeader = () => {
                   <li key={index}>
                     <Link
                       href={item.href}
-                      className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                      className={
+                        item.name === "Dashboard"
+                          ? " items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm bg-gradient-to-r  from-blue-600 to-green-500 text hover:text-primary text-transparent bg-clip-text font-extrabold"
+                          : "text-muted-foreground hover:text-accent-foreground block duration-150"
+                      }
                     >
                       <span>{item.name}</span>
                     </Link>
@@ -78,7 +83,11 @@ export const HeroHeader = () => {
                     <li key={index}>
                       <Link
                         href={item.href}
-                        className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                        className={
+                          item.name === "Dashboard"
+                            ? "p-2 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm bg-gradient-to-r from-blue-600 to-green-500 text-transparent bg-clip-text font-extrabold"
+                            : "text-muted-foreground hover:text-accent-foreground block duration-150"
+                        }
                       >
                         <span>{item.name}</span>
                       </Link>
