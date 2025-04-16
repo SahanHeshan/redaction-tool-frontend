@@ -1,17 +1,18 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useEffect } from "react";
 
 interface VideoPlayerProps {
   seekTo: number | null;
+  videoURL: string | null;
 }
 
-export function VideoPlayer({ seekTo }: VideoPlayerProps) {
+export function VideoPlayer({ seekTo, videoURL }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [timeInput, setTimeInput] = useState<string>("");
 
+  // Seek handling remains unchanged.
   useEffect(() => {
     if (seekTo !== null && videoRef.current) {
       videoRef.current.currentTime = seekTo;
@@ -24,22 +25,31 @@ export function VideoPlayer({ seekTo }: VideoPlayerProps) {
       videoRef.current.currentTime = seconds;
     }
   };
+
+  useEffect(() => {
+    if (videoRef.current && videoURL) {
+      videoRef.current.load();
+    }
+  }, [videoURL]);
+
   return (
-    <div className="flex flex-wrap gap-y-2 gap-x-8">
+    <div className="flex flex-col  gap-4 ">
       <video
         ref={videoRef}
         controls
-        poster="/vercel.svg"
-        className="w-auto max-h-[480px] rounded-lg"
+        className="md:max-h-[360px] md:min-w-[640px] max-w-full rounded-lg"
+        poster="/cover.svg"
       >
-        <Skeleton />
         <source
-          src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4"
+          src={
+            videoURL ?? "https://samplelib.com/lib/preview/mp4/sample-5s.mp4"
+          }
           type="video/mp4"
         />
         Your browser does not support the video tag.
       </video>
-      <div className="flex max-w-sm items-center space-x-2">
+
+      <div className="flex space-x-2">
         <Input
           type="number"
           value={timeInput}
