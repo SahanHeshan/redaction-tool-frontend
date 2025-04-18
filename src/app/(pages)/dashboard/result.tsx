@@ -106,7 +106,12 @@ export function ResultTable({ onView }: { onView: (time: number) => void }) {
         <TableRow>
           <TableCell colSpan={5}>Submit the Action List</TableCell>
           <TableCell className="text-right">
-            <Button onClick={() => console.log(results)}>Submit</Button>
+            <Button
+              className="bg-gradient-to-r  from-blue-600 to-green-500 text-white"
+              onClick={() => console.log(results)}
+            >
+              Submit
+            </Button>
           </TableCell>
         </TableRow>
       </TableFooter>
