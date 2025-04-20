@@ -70,7 +70,7 @@ export function ResultTable({ onView }: { onView: (time: number) => void }) {
           <TableHead>To</TableHead>
           <TableHead>Type of Leak</TableHead>
           <TableHead className="text-left">Action</TableHead>
-          <TableHead className="text-right">View</TableHead>
+          <TableHead className="text-right"></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
